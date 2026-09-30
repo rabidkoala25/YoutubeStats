@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Current Concept, by the numbers</title>
+<meta name="description" content="Daily-updated statistics for the Current Concept YouTube channel: views, upload gaps, top comments and more.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --paper:#EAF0F4; --grid:#D6DFE7; --ink:#14213D; --ink-2:#4A5873; --panel:#FFFFFF;
+  --signal:#D7263D; --amber:#E9A23B; --teal:#1F7A8C; --rule:#14213D;
+  --font:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  margin:0; color:var(--ink); font-family:var(--font); font-size:17px; line-height:1.5;
+  font-variant-numeric:tabular-nums;
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+a{color:inherit; text-decoration-color:var(--teal); text-underline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible,th:focus-visible{outline:3px solid var(--amber); outline-offset:2px}
+.wrap{max-width:1120px; margin:0 auto; padding:0 20px}
+
+/* Hero: the drought counter is the one loud thing on the page */
+header.hero{padding:40px 0 12px}
+.who{display:flex; align-items:center; gap:12px; font-weight:600}
+.who img{width:44px; height:44px; border-radius:50%; border:2px solid var(--ink)}
+.who small{display:block; font-weight:400; color:var(--ink-2)}
+.clock{
+  margin:28px 0 4px; font-stretch:125%; font-weight:850; line-height:.92;
+  font-size:clamp(3rem,11vw,8.5rem); letter-spacing:-.02em; color:var(--ink);
+}
+.clock span{white-space:nowrap}
+.clock .u{font-size:.38em; font-weight:500; margin:0 .35em 0 .06em; color:var(--signal)}
+.clock-caption{font-size:clamp(1.1rem,2.4vw,1.5rem); max-width:40ch; margin:8px 0 0}
+.forecast{max-width:66ch; color:var(--ink-2); margin:10px 0 0}
+.barcode{margin:30px 0 6px; background:var(--panel); border:2px solid var(--ink); padding:10px 10px 4px}
+.barcode svg{display:block; width:100%; height:150px}
+.barcode-legend{display:flex; justify-content:space-between; font-size:.8rem; color:var(--ink-2); padding:2px 2px 0}
+
+.controls{display:flex; flex-wrap:wrap; gap:18px; align-items:center; padding:14px 0; font-size:.95rem}
+.controls label{display:flex; gap:8px; align-items:center; cursor:pointer}
+.controls input{width:18px; height:18px; accent-color:var(--ink)}
+.stamp{color:var(--ink-2)}
+
+/* Vital signs: a single ruled row, not a card grid */
+.vitals{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); border-top:3px solid var(--rule); border-bottom:1px solid var(--rule); background:var(--panel)}
+.vitals div{padding:14px 16px; border-right:1px solid var(--grid)}
+.vitals dt{font-size:.85rem; color:var(--ink-2)}
+.vitals dd{margin:0; font-size:1.7rem; font-weight:750; font-stretch:112%}
+
+section{padding:48px 0 8px}
+h2{font-stretch:118%; font-weight:800; font-size:clamp(1.6rem,3.4vw,2.3rem); line-height:1.1; margin:0 0 6px}
+h3{font-size:1.05rem; margin:0 0 8px; font-weight:700}
+.lede{max-width:68ch; color:var(--ink-2); margin:0 0 20px}
+.grid{display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr))}
+.panel{background:var(--panel); border:1px solid var(--ink); padding:16px 18px}
+.panel.wide{grid-column:1/-1}
+.panel p{margin:.2em 0 .8em}
+.note{font-size:.88rem; color:var(--ink-2)}
+.chartbox{position:relative; height:280px}
+.chartbox.tall{height:360px}
+.facts{display:grid; grid-template-columns:auto 1fr; gap:4px 16px; margin:0}
+.facts dt{color:var(--ink-2)}
+.facts dd{margin:0; font-weight:650}
+.big{font-size:2.2rem; font-weight:800; font-stretch:115%; line-height:1}
+
+/* Heatmap */
+.heat{display:grid; grid-template-columns:38px repeat(24,1fr); gap:2px; font-size:.7rem}
+.heat .c{aspect-ratio:1; background:var(--teal); border-radius:2px; min-width:0}
+.heat .lab{color:var(--ink-2); align-self:center}
+.heat .hr{text-align:center; color:var(--ink-2)}
+
+/* Leaderboards */
+ol.board{margin:0; padding:0; list-style:none; counter-reset:b}
+ol.board li{counter-increment:b; display:grid; grid-template-columns:1.6em 1fr auto; gap:10px; padding:7px 0; border-top:1px solid var(--grid); align-items:baseline}
+ol.board li::before{content:counter(b); font-weight:800; color:var(--ink-2)}
+ol.board a{overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; text-decoration:none}
+ol.board a:hover{text-decoration:underline}
+ol.board b{white-space:nowrap}
+
+/* Comments */
+blockquote.champion{margin:0; background:var(--ink); color:#F3F6F9; padding:26px 28px; border-left:10px solid var(--amber)}
+blockquote.champion p{font-size:clamp(1.15rem,2.2vw,1.45rem); line-height:1.45; margin:0 0 14px; white-space:pre-wrap; max-width:60ch}
+blockquote.champion footer{font-size:.95rem; color:#C5CFDB}
+blockquote.champion a{text-decoration-color:var(--amber)}
+.comments{display:grid; gap:12px; margin-top:16px; grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr))}
+.comment{background:var(--panel); border:1px solid var(--ink); padding:12px 14px; font-size:.95rem}
+.comment p{margin:0 0 8px; white-space:pre-wrap; overflow-wrap:anywhere; display:-webkit-box; -webkit-line-clamp:7; -webkit-box-orient:vertical; overflow:hidden}
+.comment .meta{color:var(--ink-2); font-size:.83rem}
+
+/* Table */
+.tablewrap{overflow-x:auto; background:var(--panel); border:1px solid var(--ink)}
+table{border-collapse:collapse; width:100%; font-size:.9rem}
+th,td{padding:7px 10px; text-align:right; border-bottom:1px solid var(--grid); white-space:nowrap}
+th{position:sticky; top:0; background:var(--ink); color:#fff; cursor:pointer; user-select:none; font-weight:600}
+th[aria-sort="ascending"]::after{content:" ▲"} th[aria-sort="descending"]::after{content:" ▼"}
+td.t, th.t{text-align:left; white-space:normal; min-width:260px}
+td.t a{text-decoration:none} td.t a:hover{text-decoration:underline}
+tr:hover td{background:#F4F7FA}
+.hot{color:var(--signal); font-weight:700}
+
+/* Channel tabs + lookup */
+nav.channels{padding:22px 0 0; display:grid; gap:12px}
+.tablist{display:flex; gap:8px; overflow-x:auto; padding-bottom:4px}
+.tab{display:flex; align-items:center; gap:8px; padding:6px 12px 6px 6px; border:1px solid var(--ink); background:var(--panel); text-decoration:none; white-space:nowrap; font-weight:600; font-size:.95rem}
+.tab img,.tab .ph{width:26px; height:26px; border-radius:50%; background:var(--grid)}
+.tab[aria-current="page"]{background:var(--ink); color:#fff}
+.tab .live{font-size:.72rem; font-weight:700; color:var(--signal); border:1px solid currentColor; padding:0 5px; border-radius:3px}
+.tab[aria-current="page"] .live{color:#FFB3BD}
+.lookup-row{display:flex; flex-wrap:wrap; gap:8px 16px; align-items:center}
+form.lookup{display:flex; flex:1 1 360px; max-width:560px}
+form.lookup input{flex:1; min-width:0; font:inherit; padding:9px 12px; border:2px solid var(--ink); border-right:0; background:var(--panel); color:var(--ink)}
+button{font:inherit; font-weight:650; padding:9px 16px; border:2px solid var(--ink); background:var(--ink); color:#fff; cursor:pointer}
+button.quiet{background:var(--panel); color:var(--ink); padding:5px 12px; border-width:1px}
+details.keybox summary{cursor:pointer; color:var(--ink-2); font-size:.92rem}
+details.keybox[open]{background:var(--panel); border:1px solid var(--ink); padding:12px 14px; flex-basis:100%}
+.keyrow{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0 4px}
+.keyrow input{flex:1 1 260px; font:inherit; padding:7px 10px; border:1px solid var(--ink)}
+#status{margin:0; min-height:1.4em}
+#status.err{color:var(--signal); font-weight:600}
+.empty{background:var(--panel); border:2px solid var(--signal); padding:20px; margin:40px 0}
+footer.site{padding:48px 0 60px; color:var(--ink-2); font-size:.88rem}
+@media (max-width:600px){ body{font-size:16px} .chartbox{height:240px} .heat{font-size:.55rem; grid-template-columns:28px repeat(24,1fr)} }
+@media (prefers-reduced-motion:reduce){ *{animation:none!important; transition:none!important} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="channels" aria-label="Channels">
+    <div class="tablist" id="tablist"></div>
+    <div class="lookup-row">
+      <form class="lookup" id="lookup">
+        <input id="q" name="q" autocomplete="off" spellcheck="false" placeholder="Paste any channel, e.g. @veritasium" aria-label="Channel handle or link">
+        <button type="submit">Look up</button>
+      </form>
+      <details class="keybox" id="keybox">
+        <summary>API key for lookups</summary>
+        <div class="keyrow">
+          <input id="key" type="password" autocomplete="off" placeholder="AIza…" aria-label="YouTube API key">
+          <button type="button" id="saveKey">Save key</button>
+          <button type="button" class="quiet" id="clearKey">Remove</button>
+        </div>
+        <p class="note">Saved only in this browser, never uploaded. Use a separate key restricted to your github.io address, not the one in your GitHub secret.</p>
+      </details>
+    </div>
+    <p id="status" class="note" role="status"></p>
+  </nav>
+  <header class="hero" id="hero">
+    <div class="who" id="who"></div>
+  </header>
+  <main id="main"></main>
+  <footer class="site" id="foot"></footer>
+</div>
+
+<script>
+"use strict";
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const DAY = 864e5;
+const nf = new Intl.NumberFormat("en-GB");
+const cf = new Intl.NumberFormat("en-GB", {notation:"compact", maximumFractionDigits:1});
+const pf = (x, d=1) => (x*100).toFixed(d) + "%";
+const sum = a => a.reduce((s,x)=>s+x,0);
+const mean = a => a.length ? sum(a)/a.length : NaN;
+const quant = (a,q) => { if(!a.length) return NaN; const s=[...a].sort((x,y)=>x-y), p=(s.length-1)*q, lo=Math.floor(p); return s[lo]+(s[Math.ceil(p)]-s[lo])*(p-lo); };
+const median = a => quant(a,.5);
+const std = a => { const m=mean(a); return Math.sqrt(mean(a.map(x=>(x-m)**2))); };
+function pearson(x,y){ const mx=mean(x),my=mean(y); let n=0,dx=0,dy=0; x.forEach((xi,i)=>{n+=(xi-mx)*(y[i]-my);dx+=(xi-mx)**2;dy+=(y[i]-my)**2}); return n/Math.sqrt(dx*dy); }
+function linreg(x,y){ const mx=mean(x),my=mean(y); let n=0,d=0; x.forEach((xi,i)=>{n+=(xi-mx)*(y[i]-my);d+=(xi-mx)**2}); const b=n/d; return {a:my-b*mx,b}; }
+function gini(a){ const s=[...a].sort((x,y)=>x-y), n=s.length, t=sum(s); if(!t) return 0; let c=0; s.forEach((x,i)=>c+=(2*(i+1)-n-1)*x); return c/(n*t); }
+const fmtDur = s => { const h=Math.floor(s/3600), m=Math.floor(s%3600/60), x=s%60; return (h?h+":"+String(m).padStart(2,"0"):m)+":"+String(x).padStart(2,"0"); };
+const fmtDays = d => d<1 ? Math.round(d*24)+" hours" : d<2 ? "1 day" : Math.round(d)+" days";
+const fmtDate = t => new Date(t).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
+const link = v => `https://www.youtube.com/watch?v=${v.id}`;
+const vlink = v => `<a href="${link(v)}" target="_blank" rel="noopener">${esc(v.title)}</a>`;
+const WD = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+const STOP = new Set("a an the and or but of to in on at for with by from is are was were be been it its this that these those i you we they he she my your our how why what when where who which do does did not no yes vs x into about can will just than then so as if up out over all more most very new one two part ft feat".split(" "));
+const isShort = v => v.duration <= 180 && !v.was_live;
+
+const css = getComputedStyle(document.documentElement);
+const C = { ink:css.getPropertyValue("--ink").trim(), ink2:css.getPropertyValue("--ink-2").trim(), signal:css.getPropertyValue("--signal").trim(), amber:css.getPropertyValue("--amber").trim(), teal:css.getPropertyValue("--teal").trim(), grid:css.getPropertyValue("--grid").trim() };
+if (window.Chart){
+  Chart.defaults.font.family = css.getPropertyValue("--font");
+  Chart.defaults.color = C.ink2;
+  Chart.defaults.borderColor = C.grid;
+  Chart.defaults.plugins.legend.display = false;
+  Chart.defaults.maintainAspectRatio = false;
+}
+const charts = {};
+function chart(id, cfg){ const el=document.getElementById(id); if(!el||!window.Chart) return; charts[id]?.destroy(); charts[id]=new Chart(el,cfg); }
+const dateTicks = { callback: v => new Date(v).toLocaleDateString("en-GB",{month:"short",year:"2-digit"}) };
+
+/* ---------- state ---------- */
+const S = { data:null, hist:null, includeShorts:true, sort:{key:"published",dir:-1}, timer:null,
+            tabs:[], current:null, live:false, liveTab:null };
+const store = { get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},
+                set:(k,v)=>{try{localStorage.setItem(k,v);return true}catch(e){return false}},
+                del:k=>{try{localStorage.removeItem(k)}catch(e){}} };
+const LIVE_CACHE_HOURS = 6;
+const LIVE_COMMENT_VIDEOS = 60; // comments fetched for the 40 most-viewed + 20 newest videos
+
+function status(msg, err=false){ const el=$("#status"); el.textContent=msg||""; el.classList.toggle("err",!!err); }
+
+/* '@name', 'name', a youtube.com link, or a UC… id -> {kind, value, slug} */
+function parseRef(input){
+  let x = String(input||"").trim();
+  const m = x.match(/youtube\.com\/(?:channel\/)?(@?[\w.\-]+)/i); if(m) x = m[1];
+  if(/^UC[\w-]{22}$/.test(x)) return {kind:"id", value:x, slug:x};
+  x = x.replace(/^@/,"");
+  return x ? {kind:"handle", value:x, slug:x.toLowerCase()} : null;
+}
+
+function clearView(){
+  clearInterval(S.timer);
+  $("#who").innerHTML = "";
+  $("#hero").querySelectorAll(".clock,.clock-caption,.forecast,.barcode,.controls").forEach(e=>e.remove());
+}
+
+function showEmpty(html){ clearView(); $("#main").innerHTML = `<div class="empty">${html}</div>`; $("#foot").innerHTML=""; }
+
+function drawTabs(){
+  const tabs = S.tabs.map(t=>({...t}));
+  if(S.liveTab && !tabs.some(t=>t.slug===S.liveTab.slug)) tabs.push({...S.liveTab, live:true});
+  $("#tablist").innerHTML = tabs.map(t=>`<a class="tab" href="?c=${encodeURIComponent(t.slug)}" data-slug="${esc(t.slug)}" data-live="${t.live?1:""}" ${t.slug===S.current?'aria-current="page"':""}>${t.avatar?`<img src="${esc(t.avatar)}" alt="" loading="lazy">`:`<span class="ph"></span>`}${esc(t.title)}${t.live?`<span class="live">live</span>`:""}</a>`).join("");
+  $("#tablist").querySelectorAll(".tab").forEach(a=>a.onclick=e=>{
+    if(e.metaKey||e.ctrlKey||e.shiftKey) return;
+    e.preventDefault(); if(a.dataset.slug===S.current) return;
+    a.dataset.live ? lookup(a.dataset.slug) : loadTab(a.dataset.slug);
+  });
+}
+
+function setUrl(slug, push){ const u=new URL(location.href); u.searchParams.set("c",slug); history[push?"pushState":"replaceState"]({},"",u); }
+
+function show(data, hist, slug, live){
+  S.data=data; S.hist=hist; S.current=slug; S.live=live;
+  S.sort={key:"published",dir:-1};
+  const shorts = data.videos.filter(isShort).length;
+  S.includeShorts = shorts < data.videos.length/2; // hide Shorts by default on a mostly long-form channel
+  drawTabs(); render();
+}
+
+async function loadTab(slug, push=true){
+  status("Loading…");
+  try{
+    const r = await fetch(`data/${encodeURIComponent(slug)}/latest.json`, {cache:"no-cache"});
+    if(!r.ok) throw new Error(r.status);
+    const data = await r.json();
+    let hist=null; try{ const h=await fetch(`data/${encodeURIComponent(slug)}/history.json`,{cache:"no-cache"}); if(h.ok) hist=await h.json(); }catch(e){}
+    setUrl(slug, push); show(data, hist, slug, false); status("");
+  }catch(e){ status(`Couldn't load the saved data for ${slug}. It appears after the next workflow run.`, true); }
+}
+
+async function lookup(input, {force=false, push=true}={}){
+  const ref = parseRef(input);
+  if(!ref){ status("Paste a channel handle like @veritasium or a YouTube channel link.", true); return; }
+  if(S.tabs.some(t=>t.slug===ref.slug)) return loadTab(ref.slug, push);
+  let cached=null; try{ cached = !force && JSON.parse(store.get("live:"+ref.slug) || "null"); }catch(e){}
+  let data = cached && Date.now()-cached.saved < LIVE_CACHE_HOURS*36e5 ? cached.data : null;
+  if(!data){
+    const key = store.get("yt_key");
+    if(!key){ $("#keybox").open=true; $("#key").focus(); status("Live lookups need a YouTube API key. Paste one above and save it, then look up again.", true); return; }
+    try{ data = await fetchLive(ref, key, msg=>status(msg)); }
+    catch(e){ status(e.message, true); return; }
+    store.set("live:"+ref.slug, JSON.stringify({saved:Date.now(), data})); // may silently fail for huge channels
+  }
+  S.liveTab = {slug:ref.slug, title:data.channel.title, avatar:data.channel.avatar};
+  setUrl(ref.slug, push); show(data, null, ref.slug, true); status("");
+  $("#q").value="";
+}
+
+/* Browser-side port of scripts/fetch_stats.py; returns the same shape as latest.json */
+async function fetchLive(ref, key, progress){
+  const yt = async (endpoint, params) => {
+    const u = new URL("https://www.googleapis.com/youtube/v3/"+endpoint);
+    Object.entries({...params, key}).forEach(([k,v])=>u.searchParams.set(k,v));
+    let r; try{ r = await fetch(u); }catch(e){ throw new Error("Couldn't reach YouTube. Check your connection."); }
+    const j = await r.json().catch(()=>({}));
+    if(!r.ok){ const why = (j.error?.message||"").replace(/<[^>]+>/g,""); throw Object.assign(new Error(`YouTube refused the request (${r.status}): ${why||"unknown error"}`), {status:r.status}); }
+    return j;
+  };
+  const dur = s => { const m=/P(?:(\d+)D)?T?(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/.exec(s||""); return m ? (+m[1]||0)*86400+(+m[2]||0)*3600+(+m[3]||0)*60+(+m[4]||0) : 0; };
+
+  progress("Finding the channel…");
+  const chRes = await yt("channels", {part:"snippet,statistics,contentDetails", ...(ref.kind==="id"?{id:ref.value}:{forHandle:ref.value})});
+  const ch = chRes.items?.[0];
+  if(!ch) throw new Error(`No channel found for "${ref.value}". Check the spelling of the handle.`);
+
+  const ids=[]; let token=null;
+  do{
+    const page = await yt("playlistItems", {part:"contentDetails", playlistId:ch.contentDetails.relatedPlaylists.uploads, maxResults:50, ...(token?{pageToken:token}:{})});
+    ids.push(...(page.items||[]).map(i=>i.contentDetails.videoId)); token = page.nextPageToken;
+    progress(`Listing uploads… ${ids.length}`);
+  }while(token);
+
+  const videos=[];
+  for(let i=0;i<ids.length;i+=50){
+    const page = await yt("videos", {part:"snippet,statistics,contentDetails,liveStreamingDetails", id:ids.slice(i,i+50).join(",")});
+    for(const v of page.items||[]){
+      const sn=v.snippet, st=v.statistics||{};
+      if(["live","upcoming"].includes(sn.liveBroadcastContent)) continue;
+      videos.push({ id:v.id, title:sn.title, published:sn.publishedAt, duration:dur(v.contentDetails.duration),
+        views:+(st.viewCount||0), likes:"likeCount" in st?+st.likeCount:null, comments:"commentCount" in st?+st.commentCount:null,
+        thumb:(sn.thumbnails?.medium||sn.thumbnails?.default||{}).url||"", was_live:!!v.liveStreamingDetails, top_comments:[] });
+    }
+    progress(`Reading video stats… ${Math.min(i+50,ids.length)} of ${ids.length}`);
+  }
+  videos.sort((a,b)=>a.published<b.published?-1:1);
+
+  const pick = new Set([...videos].sort((a,b)=>b.views-a.views).slice(0,LIVE_COMMENT_VIDEOS*2/3).map(v=>v.id));
+  videos.slice(-LIVE_COMMENT_VIDEOS/3).forEach(v=>pick.add(v.id));
+  const queue = videos.filter(v=>pick.has(v.id)); let done=0;
+  const worker = async () => { for(let v; (v=queue.shift());){
+    try{
+      const res = await yt("commentThreads", {part:"snippet", videoId:v.id, maxResults:100, order:"relevance", textFormat:"plainText"});
+      v.top_comments = (res.items||[]).map(it=>{ const c=it.snippet.topLevelComment.snippet;
+        return {author:c.authorDisplayName||"", text:(c.textOriginal||c.textDisplay||"").slice(0,1200), likes:c.likeCount||0, replies:it.snippet.totalReplyCount||0, published:c.publishedAt}; })
+        .sort((a,b)=>b.likes-a.likes).slice(0,3);
+    }catch(e){ if(e.status===403 && /quota/i.test(e.message)) throw e; } // disabled comments are fine; quota is not
+    progress(`Reading comments… ${++done} of ${pick.size}`);
+  }};
+  await Promise.all(Array.from({length:6}, worker));
+
+  const s=ch.statistics, th=ch.snippet.thumbnails||{};
+  const custom = ch.snippet.customUrl || (ref.kind==="handle" ? ref.value : ch.id);
+  return { generated_at:new Date().toISOString(), comments_sampled:pick.size,
+    channel:{ id:ch.id, handle:custom.startsWith("@")||custom.startsWith("UC")?custom:"@"+custom, title:ch.snippet.title,
+      avatar:(th.high||th.default||{}).url||"", created:ch.snippet.publishedAt,
+      subscribers:+(s.subscriberCount||0), subscribers_hidden:!!s.hiddenSubscriberCount, views:+(s.viewCount||0), video_count:+(s.videoCount||0) },
+    videos };
+}
+
+async function route(push=false){
+  const want = new URLSearchParams(location.search).get("c");
+  if(want) return lookup(want, {push});
+  if(S.tabs.length) return loadTab(S.tabs[0].slug, push);
+  showEmpty(`<h2>No saved channels yet</h2><p>The daily GitHub Action creates the saved tabs from <code>channels.txt</code>. Open the repository's Actions tab, choose “Update channel stats” and run it once. You can still look up any channel above with an API key.</p>`);
+}
+
+async function boot(){
+  try{ const r = await fetch("data/channels.json",{cache:"no-cache"}); if(r.ok) S.tabs = await r.json(); }catch(e){}
+  drawTabs();
+  $("#key").value = store.get("yt_key") || "";
+  $("#saveKey").onclick = () => { const k=$("#key").value.trim(); if(!k){ status("Paste a key first.", true); return; } store.set("yt_key",k); $("#keybox").open=false; status("Key saved in this browser."); };
+  $("#clearKey").onclick = () => { store.del("yt_key"); $("#key").value=""; status("Key removed from this browser."); };
+  $("#lookup").onsubmit = e => { e.preventDefault(); lookup($("#q").value); };
+  window.onpopstate = () => route(false);
+  route(false);
+}
+
+/* ---------- derive ---------- */
+function derive(){
+  const now = new Date(S.data.generated_at).getTime();
+  const vids = S.data.videos.filter(v => S.includeShorts || !isShort(v)).map(v => {
+    const t = new Date(v.published).getTime(), age = Math.max((now-t)/DAY, .5);
+    return {...v, t, age, vpd:v.views/age, likeRatio:v.likes!=null&&v.views?v.likes/v.views:null, cpk:v.comments!=null&&v.views?v.comments/v.views*1000:null};
+  }).sort((a,b)=>a.t-b.t);
+  const med = median(vids.map(v=>v.views));
+  vids.forEach(v => v.vsMed = med ? v.views/med : 0);
+  const gaps = vids.slice(1).map((v,i)=>({days:(v.t-vids[i].t)/DAY, from:vids[i], to:v}));
+  return {now, vids, med, gaps};
+}
+
+/* ---------- render ---------- */
+function render(){
+  const {now, vids, med, gaps} = derive();
+  const ch = S.data.channel;
+  document.title = `${ch.title}, by the numbers`;
+  $("#who").innerHTML = `${ch.avatar?`<img src="${esc(ch.avatar)}" alt="">`:""}<div><a href="https://www.youtube.com/${esc(ch.handle)}" target="_blank" rel="noopener">${esc(ch.title)}</a><small>${esc(ch.handle)} on YouTube, ${S.live?"looked up live":"measured daily"}</small></div>`;
+  if(!vids.length){ clearInterval(S.timer); $("#hero").querySelectorAll(".clock,.clock-caption,.forecast,.barcode,.controls").forEach(e=>e.remove()); $("#main").innerHTML = `<div class="empty"><p>No videos match the current filter.</p></div>`; return; }
+
+  const last = vids[vids.length-1];
+  const gd = gaps.map(g=>g.days);
+  const medGap = median(gd), q1 = quant(gd,.25), q3 = quant(gd,.75);
+  const since = (Date.now()-last.t)/DAY;
+  const pctShorter = gd.length ? gd.filter(g=>g<since).length/gd.length : 0;
+  const nextAt = last.t + medGap*DAY;
+  const longest = gaps.reduce((m,g)=>g.days>(m?.days??-1)?g:m, null);
+  const shortest = gaps.reduce((m,g)=>g.days<(m?.days??1e9)?g:m, null);
+
+  const totalViews = sum(vids.map(v=>v.views));
+  const totalLikes = sum(vids.map(v=>v.likes||0));
+  const runtime = sum(vids.map(v=>v.duration));
+  const maxWatch = sum(vids.map(v=>v.views*v.duration));
+
+  /* hero */
+  const forecast = gd.length
+    ? (Date.now() < nextAt
+        ? `The typical gap between uploads is ${fmtDays(medGap)}, so the next one is due around <b>${fmtDate(nextAt)}</b> (the middle half of gaps land between ${fmtDate(last.t+q1*DAY)} and ${fmtDate(last.t+q3*DAY)}).`
+        : `The typical gap between uploads is ${fmtDays(medGap)}, which makes the next video <b>${fmtDays((Date.now()-nextAt)/DAY)} overdue</b>.`)
+      + ` This wait is already longer than ${pf(pctShorter,0)} of all previous gaps.`
+    : "";
+  const heroEl = $("#hero");
+  heroEl.querySelector(".clock")?.remove(); heroEl.querySelectorAll(".clock-caption,.forecast,.barcode,.controls").forEach(e=>e.remove());
+  heroEl.insertAdjacentHTML("beforeend", `
+    <div class="clock" id="clock" aria-live="off"></div>
+    <p class="clock-caption">since the last upload, <a href="${link(last)}" target="_blank" rel="noopener">${esc(last.title)}</a>.</p>
+    <p class="forecast">${forecast}</p>
+    <figure class="barcode" aria-label="Every upload on a timeline, bar height by views">${barcode(vids, now)}
+      <figcaption class="barcode-legend"><span>${fmtDate(vids[0].t)}</span><span>Each bar is an upload. Taller means more views. Red is the current wait.</span><span>today</span></figcaption></figure>
+    <div class="controls">
+      <label><input type="checkbox" id="shorts" ${S.includeShorts?"checked":""}> Include Shorts (videos of 3 minutes or less)</label>
+      <span class="stamp">${S.live?"Fetched live":"Data refreshed"} ${new Date(S.data.generated_at).toLocaleString("en-GB",{dateStyle:"medium",timeStyle:"short"})}</span>${S.live?`<button type="button" class="quiet" id="refetch">Fetch again</button>`:""}
+    </div>`);
+  $("#shorts").onchange = e => { S.includeShorts = e.target.checked; render(); };
+  if(S.live) $("#refetch").onclick = () => lookup(S.current, {force:true, push:false});
+  clearInterval(S.timer);
+  const tick = () => { let s=Math.floor((Date.now()-last.t)/1000); const d=Math.floor(s/86400); s%=86400; const h=Math.floor(s/3600), m=Math.floor(s%3600/60), x=s%60;
+    $("#clock").innerHTML = `<span>${d}<span class="u">d</span></span> <span>${String(h).padStart(2,"0")}<span class="u">h</span>${String(m).padStart(2,"0")}<span class="u">m</span>${String(x).padStart(2,"0")}<span class="u">s</span></span>`; };
+  tick(); S.timer = setInterval(tick, 1000);
+
+  /* derived nerd stats */
+  const sortedViews = vids.map(v=>v.views).sort((a,b)=>b-a);
+  const top10share = sum(sortedViews.slice(0, Math.max(1, Math.round(vids.length*.1))))/totalViews;
+  const G = gini(sortedViews);
+  const mature = vids.filter(v=>v.age>14 && v.views>0);
+  const fit = mature.length>4 ? linreg(mature.map(v=>Math.log10(v.age)), mature.map(v=>Math.log10(v.views))) : null;
+  const withDur = vids.filter(v=>v.views>0&&v.duration>0);
+  const rDur = withDur.length>3 ? pearson(withDur.map(v=>Math.log10(v.duration)), withDur.map(v=>Math.log10(v.views))) : NaN;
+  const rTitle = vids.length>3 ? pearson(vids.map(v=>v.title.length), vids.map(v=>Math.log10(v.views+1))) : NaN;
+  const byGroup = (pred) => { const a=vids.filter(pred), b=vids.filter(v=>!pred(v)); return {n:a.length, a:median(a.map(v=>v.views)), b:median(b.map(v=>v.views))}; };
+  const qTitles = byGroup(v=>v.title.includes("?"));
+  const numTitles = byGroup(v=>/\d/.test(v.title));
+  const capsTitles = byGroup(v=>/\b[A-Z]{3,}\b/.test(v.title));
+
+  /* comments */
+  const allComments = vids.flatMap(v => (v.top_comments||[]).map(c=>({...c, v})));
+  allComments.sort((a,b)=>b.likes-a.likes);
+  const champ = allComments[0];
+  const mostReplies = [...allComments].sort((a,b)=>b.replies-a.replies)[0];
+  const perVideoTop = vids.map(v=>v.top_comments?.[0] ? {...v.top_comments[0], v} : null).filter(Boolean).sort((a,b)=>b.likes-a.likes);
+  const champRatio = champ && champ.v.likes ? champ.likes/champ.v.likes : null;
+
+  /* momentum from history */
+  const mom = momentum(vids);
+
+  const lb = (arr, key, fmt, n=5) => `<ol class="board">${arr.filter(v=>v[key]!=null).sort((a,b)=>b[key]-a[key]).slice(0,n).map(v=>`<li>${vlink(v)}<b>${fmt(v[key],v)}</b></li>`).join("")}</ol>`;
+
+  $("#main").innerHTML = `
+  <dl class="vitals">
+    <div><dt>Subscribers</dt><dd>${ch.subscribers_hidden?"hidden":cf.format(ch.subscribers)}</dd></div>
+    <div><dt>Views on shown videos</dt><dd>${cf.format(totalViews)}</dd></div>
+    <div><dt>Videos shown</dt><dd>${vids.length}</dd></div>
+    <div><dt>Median views</dt><dd>${cf.format(med)}</dd></div>
+    <div><dt>Total runtime</dt><dd>${(runtime/3600).toFixed(1)} h</dd></div>
+    <div><dt>Likes per 100 views</dt><dd>${(totalLikes/totalViews*100).toFixed(2)}</dd></div>
+  </dl>
+
+  <section id="rhythm">
+    <h2>Upload rhythm</h2>
+    <p class="lede">How long the channel goes between videos, and when they tend to appear.</p>
+    <div class="grid">
+      <div class="panel wide"><h3>Days between consecutive uploads</h3><div class="chartbox"><canvas id="cGaps"></canvas></div>
+        <p class="note">Each bar is the wait before one video. Red bars are longer than the upper quartile. The last bar is the wait still running.</p></div>
+      <div class="panel"><h3>Gap statistics</h3><dl class="facts">
+        <dt>Median gap</dt><dd>${gd.length?fmtDays(medGap):"n/a"}</dd>
+        <dt>Mean gap</dt><dd>${gd.length?fmtDays(mean(gd)):"n/a"} (σ ${gd.length?std(gd).toFixed(1):"–"} days)</dd>
+        <dt>Longest drought</dt><dd>${longest?`${fmtDays(longest.days)}, ending with ${vlink(longest.to)}`:"n/a"}</dd>
+        <dt>Quickest follow-up</dt><dd>${shortest?`${fmtDays(shortest.days)}, ${vlink(shortest.to)}`:"n/a"}</dd>
+        <dt>Coefficient of variation</dt><dd>${gd.length?(std(gd)/mean(gd)).toFixed(2):"n/a"} <span class="note">(0 is clockwork, above 1 is bursty)</span></dd>
+        <dt>Uploads per 30 days</dt><dd>${vids.length>1?(vids.length/((last.t-vids[0].t)/DAY)*30).toFixed(2):"n/a"}</dd>
+      </dl></div>
+      <div class="panel"><h3>When uploads go live <span class="note">(your local time)</span></h3>${heatmap(vids)}</div>
+      <div class="panel wide"><h3>Uploads per month</h3><div class="chartbox"><canvas id="cMonths"></canvas></div></div>
+    </div>
+  </section>
+
+  <section id="performance">
+    <h2>Performance</h2>
+    <p class="lede">Views are plotted on a log scale, because one hit can be worth a hundred ordinary videos.</p>
+    <div class="grid">
+      <div class="panel wide"><h3>Views by publish date</h3><div class="chartbox tall"><canvas id="cViews"></canvas></div>
+        <p class="note">The dashed line is the channel median (${nf.format(Math.round(med))} views). Hover a dot for its title.</p></div>
+      <div class="panel"><h3>Video length against views</h3><div class="chartbox"><canvas id="cDur"></canvas></div>
+        <p class="note">Correlation of log length with log views: r = ${isNaN(rDur)?"n/a":rDur.toFixed(2)}. ${isNaN(rDur)?"":Math.abs(rDur)<.2?"Length barely matters here.":rDur>0?"Longer videos tend to do better.":"Shorter videos tend to do better."}</p></div>
+      <div class="panel"><h3>Views against age</h3><div class="chartbox"><canvas id="cAge"></canvas></div>
+        <p class="note">${fit?`Fitted across videos older than two weeks, views grow roughly like age<sup>${fit.b.toFixed(2)}</sup>. An exponent near 0 means videos get their views up front and then stall; near 1 means steady evergreen traffic.`:"Needs a few videos older than two weeks."}</p></div>
+    </div>
+  </section>
+
+  <section id="boards">
+    <h2>Leaderboards</h2>
+    <p class="lede">The same videos, ranked four different ways.</p>
+    <div class="grid">
+      <div class="panel"><h3>Most viewed</h3>${lb(vids,"views",x=>cf.format(x))}</div>
+      <div class="panel"><h3>Fastest (views per day since upload)</h3>${lb(vids,"vpd",x=>cf.format(x)+"/day")}</div>
+      <div class="panel"><h3>Best liked (likes per view)</h3>${lb(vids.filter(v=>v.views>=Math.min(1000,med)),"likeRatio",x=>pf(x,2))}</div>
+      <div class="panel"><h3>Most talked about (comments per 1,000 views)</h3>${lb(vids.filter(v=>v.views>=Math.min(1000,med)),"cpk",x=>x.toFixed(1))}</div>
+    </div>
+  </section>
+
+  <section id="momentum">
+    <h2>Momentum</h2>
+    <p class="lede">Built from the daily snapshots this site has been collecting since ${S.hist?.channel?.[0]?.[0] ? fmtDate(S.hist.channel[0][0]) : "its first run"}.</p>
+    ${mom.ready ? `<div class="grid">
+      <div class="panel"><h3>Subscribers over time</h3><div class="chartbox"><canvas id="cSubs"></canvas></div>
+        <p class="note">${mom.subDelta!=null?`${mom.subDelta>=0?"+":""}${nf.format(mom.subDelta)} over the last ${mom.span} days.`:""}</p></div>
+      <div class="panel"><h3>Views gained in the last ${mom.span===1?"day":mom.span+" days"}</h3><ol class="board">${mom.top.map(m=>`<li>${vlink(m.v)}<b>+${cf.format(m.d)}</b></li>`).join("")}</ol>
+        <p class="note">${mom.backCatalog!=null?`${pf(mom.backCatalog,0)} of recent views went to videos more than 90 days old.`:""}</p></div>
+    </div>` : `<div class="panel"><p>${S.live?`Live lookups are a single snapshot, so there is no history to compare. Add <code>${esc(ch.handle)}</code> to <code>channels.txt</code> to give this channel a permanent tab that collects daily history.`:"Momentum needs at least two daily snapshots. Check back tomorrow."}</p></div>`}
+  </section>
+
+  <section id="comments">
+    <h2>Comments</h2>
+    <p class="lede">The most-liked comment on each video, taken from its 100 most relevant comment threads.${S.live?` For live lookups, only the ${S.data.comments_sampled} most-viewed and newest videos are checked to save quota.`:""}</p>
+    ${champ ? `<blockquote class="champion"><p>${esc(champ.text)}</p>
+      <footer>${esc(champ.author)}, ${nf.format(champ.likes)} likes, on ${vlink(champ.v)}${champRatio?`. That is ${champRatio>=1?`${champRatio.toFixed(1)}× the likes on the video itself`:`${pf(champRatio,0)} of the video's own likes`}.`:""}</footer></blockquote>
+    <div class="comments">${perVideoTop.filter(c=>c!==champ && !(c.v.id===champ.v.id && c.text===champ.text)).slice(0,9).map(c=>`<article class="comment"><p>${esc(c.text)}</p><div class="meta">${esc(c.author)}, ${nf.format(c.likes)} likes, on ${vlink(c.v)}</div></article>`).join("")}</div>
+    ${mostReplies && mostReplies.replies ? `<p class="note" style="margin-top:14px">Biggest argument: a comment by ${esc(mostReplies.author)} on ${vlink(mostReplies.v)} drew ${nf.format(mostReplies.replies)} replies.</p>`:""}`
+    : `<div class="panel"><p>No comments collected yet.</p></div>`}
+  </section>
+
+  <section id="oddities">
+    <h2>Oddities</h2>
+    <p class="lede">Statistics nobody asked for.</p>
+    <div class="grid">
+      <div class="panel"><h3>Benford's law check</h3><div class="chartbox"><canvas id="cBenford"></canvas></div>
+        <p class="note">Leading digits of view counts (bars) against Benford's prediction (line). Naturally growing numbers start with 1 about 30% of the time.</p></div>
+      <div class="panel"><h3>Title words</h3><div class="chartbox"><canvas id="cWords"></canvas></div></div>
+      <div class="panel"><h3>Inequality</h3><dl class="facts">
+        <dt>Gini coefficient of views</dt><dd>${G.toFixed(2)} <span class="note">(0 equal, 1 one video has everything)</span></dd>
+        <dt>Top 10% of videos</dt><dd>earn ${pf(top10share,0)} of views</dd>
+        <dt>Biggest hit vs median</dt><dd>${(sortedViews[0]/med).toFixed(1)}×</dd>
+        <dt>Videos above median ×2</dt><dd>${vids.filter(v=>v.vsMed>=2).length}</dd>
+      </dl></div>
+      <div class="panel"><h3>Title lab</h3><dl class="facts">
+        <dt>Question titles</dt><dd>${qTitles.n?`${qTitles.n} videos, median ${cf.format(qTitles.a)} vs ${cf.format(qTitles.b)} without “?”`:"none"}</dd>
+        <dt>Numbers in title</dt><dd>${numTitles.n?`${numTitles.n} videos, median ${cf.format(numTitles.a)} vs ${cf.format(numTitles.b)}`:"none"}</dd>
+        <dt>SHOUTY words</dt><dd>${capsTitles.n?`${capsTitles.n} videos, median ${cf.format(capsTitles.a)} vs ${cf.format(capsTitles.b)}`:"none"}</dd>
+        <dt>Average title length</dt><dd>${mean(vids.map(v=>v.title.length)).toFixed(0)} characters (r with log views ${isNaN(rTitle)?"n/a":rTitle.toFixed(2)})</dd>
+      </dl></div>
+      <div class="panel"><h3>Watch time, upper bound</h3>
+        <p class="big">${cf.format(maxWatch/3600/24/365.25)} years</p>
+        <p class="note">If every view were a full watch, viewers would have spent ${nf.format(Math.round(maxWatch/3600))} hours on these videos. Real retention is usually well under half, so treat this as a ceiling.</p></div>
+      <div class="panel"><h3>Per second of footage</h3>
+        <p class="big">${(totalViews/runtime).toFixed(1)} views</p>
+        <p class="note">and ${(totalLikes/runtime).toFixed(2)} likes for every second of video uploaded.</p></div>
+    </div>
+  </section>
+
+  <section id="all">
+    <h2>Every video</h2>
+    <p class="lede">Select a column heading to sort. “vs median” compares views with the typical video; above 1× is an overperformer.</p>
+    <div class="tablewrap"><table id="tbl"></table></div>
+  </section>`;
+
+  $("#foot").innerHTML = `Data from the YouTube Data API, ${S.live?"fetched from your browser just now":"collected once a day by a GitHub Action"}. Like and comment counts can lag YouTube by a few hours. Not affiliated with ${esc(ch.title)}.`;
+
+  drawCharts(vids, gaps, med, since, q3, fit, mom);
+  drawTable(vids);
+}
+
+function barcode(vids, now){
+  const W=1000, H=150, t0=vids[0].t, t1=Math.max(Date.now(), now), span=Math.max(t1-t0,DAY);
+  const x = t => (t-t0)/span*(W-4)+2;
+  const lmax = Math.log10(Math.max(...vids.map(v=>v.views),10)), lmin = Math.max(0, Math.log10(Math.max(1,Math.min(...vids.map(v=>v.views))))-.3);
+  const last = vids[vids.length-1];
+  const bars = vids.map(v => { const h = 12 + (Math.log10(Math.max(v.views,1))-lmin)/(lmax-lmin||1)*(H-24);
+    return `<a href="${link(v)}" target="_blank" rel="noopener"><rect x="${x(v.t)-1.5}" y="${H-h}" width="3" height="${h}" fill="${C.ink}"><title>${esc(v.title)}\n${fmtDate(v.t)}, ${nf.format(v.views)} views</title></rect></a>`; }).join("");
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img">
+    <defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="3" height="6" fill="${C.signal}" opacity=".35"/></pattern></defs>
+    <rect x="${x(last.t)+2}" y="0" width="${Math.max(W-2-x(last.t)-2,1)}" height="${H}" fill="url(#hatch)"/>
+    <line x1="0" x2="${W}" y1="${H-.5}" y2="${H-.5}" stroke="${C.ink}"/>${bars}</svg>`;
+}
+
+function heatmap(vids){
+  const g = Array.from({length:7},()=>Array(24).fill(0));
+  vids.forEach(v => { const d=new Date(v.t); g[(d.getDay()+6)%7][d.getHours()]++; });
+  const max = Math.max(1,...g.flat());
+  const dayTot = g.map(r=>sum(r)), best = dayTot.indexOf(Math.max(...dayTot));
+  let h = `<div class="heat" role="img" aria-label="Upload counts by weekday and hour"><span></span>${Array.from({length:24},(_,i)=>`<span class="hr">${i%3===0?i:""}</span>`).join("")}`;
+  g.forEach((row,i)=>{ h += `<span class="lab">${WD[i]}</span>` + row.map((n,hr)=>`<span class="c" style="opacity:${n?(.18+.82*n/max).toFixed(2):.05}" title="${WD[i]} ${hr}:00, ${n} upload${n===1?"":"s"}"></span>`).join(""); });
+  return h + `</div><p class="note" style="margin-top:10px">Favourite day: ${WD[best]} (${dayTot[best]} of ${vids.length} uploads).</p>`;
+}
+
+function momentum(vids){
+  const H = S.hist; if(!H || !H.channel || H.channel.length<2) return {ready:false};
+  const rows = H.channel, lastDate = rows[rows.length-1][0];
+  const target = new Date(new Date(lastDate).getTime()-7*DAY).toISOString().slice(0,10);
+  const base = rows.find(r=>r[0]>=target) ?? rows[0];
+  const span = Math.max(1, Math.round((new Date(lastDate)-new Date(base[0]))/DAY));
+  const deltas = vids.map(v => { const h=H.videos?.[v.id]; if(!h) return null; const b=h.find(r=>r[0]>=base[0]); const e=h[h.length-1];
+    return b ? {v, d:e[1]-b[1]} : {v, d:e[1]}; }).filter(Boolean);
+  const tot = sum(deltas.map(d=>Math.max(d.d,0)));
+  const old = sum(deltas.filter(d=>d.v.age>90).map(d=>Math.max(d.d,0)));
+  return { ready:true, span, subs:rows, subDelta: rows[rows.length-1][1]-base[1],
+    top: deltas.sort((a,b)=>b.d-a.d).slice(0,6), backCatalog: tot?old/tot:null };
+}
+
+function drawCharts(vids, gaps, med, since, q3, fit, mom){
+  const gapVals = gaps.map(g=>g.days).concat([since]);
+  const gapLabels = gaps.map(g=>g.to.title).concat(["(current wait)"]);
+  chart("cGaps",{type:"bar",data:{labels:gapLabels,datasets:[{data:gapVals,
+    backgroundColor:gapVals.map((g,i)=> i===gapVals.length-1 ? "rgba(215,38,61,.25)" : g>q3 ? C.signal : C.ink),
+    borderColor:C.signal, borderWidth:gapVals.map((g,i)=> i===gapVals.length-1 ? 2 : 0), barPercentage:1, categoryPercentage:.85}]},
+    options:{scales:{x:{ticks:{display:false},grid:{display:false}},y:{title:{display:true,text:"days"}}},
+      plugins:{tooltip:{callbacks:{title:i=>i[0].label,label:i=>fmtDays(i.raw)}}}}});
+
+  const months = {}; vids.forEach(v=>{ const k=new Date(v.t).toISOString().slice(0,7); months[k]=(months[k]||0)+1; });
+  const mk = []; if(vids.length){ const d=new Date(vids[0].t); d.setUTCDate(1); const end=new Date(); while(d<=end){ mk.push(d.toISOString().slice(0,7)); d.setUTCMonth(d.getUTCMonth()+1);} }
+  chart("cMonths",{type:"bar",data:{labels:mk,datasets:[{data:mk.map(k=>months[k]||0),backgroundColor:C.teal}]},
+    options:{scales:{y:{ticks:{precision:0}},x:{grid:{display:false},ticks:{maxRotation:0,autoSkip:true,maxTicksLimit:12}}}}});
+
+  const pts = vids.filter(v=>v.views>0);
+  chart("cViews",{type:"scatter",data:{datasets:[
+      {data:pts.map(v=>({x:v.t,y:v.views,v})),backgroundColor:pts.map(v=>v.vsMed>=2?C.amber:C.ink),pointRadius:pts.map(v=>v.vsMed>=2?6:4),pointHoverRadius:8},
+      {type:"line",data:pts.length?[{x:pts[0].t,y:med},{x:pts[pts.length-1].t,y:med}]:[],borderColor:C.signal,borderDash:[6,4],pointRadius:0,borderWidth:1.5}]},
+    options:{onClick:(e,els)=>{ const p=els[0]; if(p&&p.datasetIndex===0) window.open(link(pts[p.index]),"_blank"); },
+      scales:{x:{type:"linear",ticks:dateTicks},y:{type:"logarithmic",title:{display:true,text:"views"},ticks:{callback:v=>{const l=Math.log10(v);return Number.isInteger(l)?cf.format(v):""}}}},
+      plugins:{tooltip:{filter:i=>i.datasetIndex===0,callbacks:{label:i=>`${i.raw.v.title} · ${nf.format(i.raw.v.views)} views`}}}}});
+
+  const dp = vids.filter(v=>v.views>0&&v.duration>0);
+  chart("cDur",{type:"scatter",data:{datasets:[{data:dp.map(v=>({x:v.duration/60,y:v.views,v})),backgroundColor:C.teal,pointRadius:4}]},
+    options:{scales:{x:{type:"logarithmic",title:{display:true,text:"minutes"},ticks:{callback:v=>[0.5,1,2,5,10,20,30,60,120].includes(+v.toFixed(1))?v:""}},y:{type:"logarithmic",ticks:{callback:v=>Number.isInteger(Math.log10(v))?cf.format(v):""}}},
+      plugins:{tooltip:{callbacks:{label:i=>`${i.raw.v.title} · ${fmtDur(i.raw.v.duration)} · ${cf.format(i.raw.v.views)}`}}}}});
+
+  const ap = vids.filter(v=>v.views>0);
+  const ds = [{data:ap.map(v=>({x:v.age,y:v.views,v})),backgroundColor:C.ink,pointRadius:4}];
+  if(fit){ const xs=[14, Math.max(...ap.map(v=>v.age))]; ds.push({type:"line",data:xs.map(x=>({x,y:10**(fit.a+fit.b*Math.log10(x))})),borderColor:C.amber,borderWidth:2,pointRadius:0}); }
+  chart("cAge",{type:"scatter",data:{datasets:ds},
+    options:{scales:{x:{type:"logarithmic",title:{display:true,text:"age in days"},ticks:{callback:v=>[1,7,30,100,365,1000].includes(v)?v:""}},y:{type:"logarithmic",ticks:{callback:v=>Number.isInteger(Math.log10(v))?cf.format(v):""}}},
+      plugins:{tooltip:{filter:i=>i.datasetIndex===0,callbacks:{label:i=>`${i.raw.v.title} · ${Math.round(i.raw.v.age)} days · ${cf.format(i.raw.v.views)}`}}}}});
+
+  const digits = Array(9).fill(0); vids.forEach(v=>{ const d=+String(v.views)[0]; if(d>0) digits[d-1]++; });
+  const n = sum(digits)||1;
+  chart("cBenford",{type:"bar",data:{labels:["1","2","3","4","5","6","7","8","9"],datasets:[
+      {data:digits.map(x=>x/n*100),backgroundColor:C.ink},
+      {type:"line",data:Array.from({length:9},(_,i)=>Math.log10(1+1/(i+1))*100),borderColor:C.amber,borderWidth:2,pointBackgroundColor:C.amber}]},
+    options:{scales:{y:{title:{display:true,text:"% of videos"}},x:{grid:{display:false},title:{display:true,text:"first digit of view count"}}},
+      plugins:{tooltip:{callbacks:{label:i=>i.raw.toFixed(1)+"%"}}}}});
+
+  const wc = {}; vids.forEach(v=>new Set(v.title.toLowerCase().replace(/[^\p{L}\p{N}\s'-]/gu," ").split(/\s+/)).forEach(w=>{ if(w.length>2&&!STOP.has(w)&&!/^\d+$/.test(w)) wc[w]=(wc[w]||0)+1; }));
+  const words = Object.entries(wc).filter(([,c])=>c>1).sort((a,b)=>b[1]-a[1]).slice(0,12);
+  chart("cWords",{type:"bar",data:{labels:words.map(w=>w[0]),datasets:[{data:words.map(w=>w[1]),backgroundColor:C.teal}]},
+    options:{indexAxis:"y",scales:{x:{ticks:{precision:0},title:{display:true,text:"titles containing the word"}},y:{grid:{display:false}}}}});
+
+  if(mom.ready){
+    chart("cSubs",{type:"line",data:{labels:mom.subs.map(r=>r[0]),datasets:[{data:mom.subs.map(r=>r[1]),borderColor:C.ink,backgroundColor:C.ink,pointRadius:mom.subs.length>40?0:3,tension:.2}]},
+      options:{scales:{x:{ticks:{maxTicksLimit:8,maxRotation:0}},y:{ticks:{callback:v=>cf.format(v)}}}}});
+  }
+}
+
+function drawTable(vids){
+  const cols = [
+    {k:"published",l:"Uploaded",f:v=>fmtDate(v.t),s:v=>v.t},
+    {k:"title",l:"Title",f:v=>vlink(v),s:v=>v.title.toLowerCase(),cls:"t"},
+    {k:"duration",l:"Length",f:v=>fmtDur(v.duration),s:v=>v.duration},
+    {k:"views",l:"Views",f:v=>nf.format(v.views),s:v=>v.views},
+    {k:"likes",l:"Likes",f:v=>v.likes==null?"hidden":nf.format(v.likes),s:v=>v.likes??-1},
+    {k:"likeRatio",l:"Like %",f:v=>v.likeRatio==null?"–":pf(v.likeRatio,2),s:v=>v.likeRatio??-1},
+    {k:"comments",l:"Comments",f:v=>v.comments==null?"off":nf.format(v.comments),s:v=>v.comments??-1},
+    {k:"vpd",l:"Views/day",f:v=>cf.format(v.vpd),s:v=>v.vpd},
+    {k:"vsMed",l:"vs median",f:v=>`<span class="${v.vsMed>=2?"hot":""}">${v.vsMed.toFixed(2)}×</span>`,s:v=>v.vsMed},
+  ];
+  const {key,dir} = S.sort, col = cols.find(c=>c.k===key) || cols[0];
+  const rows = [...vids].sort((a,b)=>{ const x=col.s(a), y=col.s(b); return (x>y?1:x<y?-1:0)*dir; });
+  $("#tbl").innerHTML = `<thead><tr>${cols.map(c=>`<th class="${c.cls||""}" tabindex="0" data-k="${c.k}" ${c.k===key?`aria-sort="${dir>0?"ascending":"descending"}"`:""}>${c.l}</th>`).join("")}</tr></thead>
+    <tbody>${rows.map(v=>`<tr>${cols.map(c=>`<td class="${c.cls||""}">${c.f(v)}</td>`).join("")}</tr>`).join("")}</tbody>`;
+  $("#tbl").querySelectorAll("th").forEach(th=>{ const go=()=>{ const k=th.dataset.k; S.sort = {key:k, dir: S.sort.key===k ? -S.sort.dir : (k==="title"?1:-1)}; drawTable(vids); };
+    th.onclick=go; th.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); } }; });
+}
+
+boot();
+</script>
+</body>
+</html>

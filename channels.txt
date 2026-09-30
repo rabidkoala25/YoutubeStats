@@ -1,0 +1,6 @@
+# Channels that get their own tab on the site.
+# One per line: @handle, a youtube.com/@handle link, or a UC... channel ID.
+# The first one is the tab that opens by default.
+# Lines starting with # are ignored. Saving this file on GitHub triggers a fresh run.
+
+@currentconcept

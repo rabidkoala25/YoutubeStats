@@ -1,0 +1,52 @@
+name: Update channel stats
+
+on:
+  schedule:
+    - cron: "17 4 * * *"   # every day at 04:17 UTC
+  workflow_dispatch:        # run it by hand from the Actions tab
+  push:
+    branches: [main]        # redeploy when you edit the site or channels.txt
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: update-stats
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Fetch stats from YouTube
+        run: python scripts/fetch_stats.py
+        env:
+          YT_API_KEY: ${{ secrets.YT_API_KEY }}
+
+      - name: Commit data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data/
+          git diff --staged --quiet || git commit -m "Daily stats $(date -u +%F)"
+          git push
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
