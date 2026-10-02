@@ -1,0 +1,471 @@
+{
+ "generated_at": "2026-10-02T10:31:34+00:00",
+ "channel": {
+  "id": "UCiNLr9wX35KksK77mrQgxiw",
+  "handle": "@twoswap",
+  "title": "2swap",
+  "avatar": "https://yt3.ggpht.com/rVBD4hhq0_7eRPwkOkyCreFtoY2Sbx7wowBB02okCSkJoQ5LDlUv9x6uZKmqyIeIaGQNg93u=s800-c-k-c0x00ffffff-no-rj",
+  "created": "2017-01-25T01:56:04Z",
+  "subscribers": 363000,
+  "subscribers_hidden": false,
+  "views": 17530065,
+  "video_count": 13
+ },
+ "videos": [
+  {
+   "id": "ncqBsdo54sQ",
+   "title": "Threat Pairs - Connect 4 Strategy",
+   "published": "2023-05-28T18:57:36Z",
+   "duration": 212,
+   "views": 73950,
+   "likes": 3176,
+   "comments": 59,
+   "thumb": "https://i.ytimg.com/vi/ncqBsdo54sQ/mqdefault.jpg",
+   "was_live": false,
+   "top_comments": [
+    {
+     "author": "@timothykubista3823",
+     "text": "I am excited to have my understanding of reality itself changed!  But first, we must establish parity.",
+     "likes": 370,
+     "replies": 4,
+     "published": "2023-05-29T18:00:21Z"
+    },
+    {
+     "author": "@huvarda",
+     "text": "My classmates and I developed this strategy back in elementary school together and we even called them “automatic wins” where we would try to make the “7” shape",
+     "likes": 228,
+     "replies": 0,
+     "published": "2023-07-03T19:13:11Z"
+    },
+    {
+     "author": "@Jean-dd1sl",
+     "text": "i was looking for graph theory tutorials because i'm in the process of designing a game. finding this series was a happy accident! i hadn't thought about the strategy of connect 4 all that much, but looking at the structure of gameplay this way is really helpful for my design process. thank you very much for making this 🙏",
+     "likes": 40,
+     "replies": 0,
+     "published": "2024-08-30T19:38:02Z"
+    }
+   ],
+   "comments_checked": "2026-10-02"
+  },
+  {
+   "id": "VSTQnPUILfo",
+   "title": "Parity - Connect 4 Strategy",
+   "published": "2023-06-23T18:30:11Z",
+   "duration": 707,
+   "views": 148406,
+   "likes": 4759,
+   "comments": 199,
+   "thumb": "https://i.ytimg.com/vi/VSTQnPUILfo/mqdefault.jpg",
+   "was_live": true,
+   "top_comments": [
+    {
+     "author": "@sorin_markov",
+     "text": "Excellent video!  Explaning why evens-odds works has always been one of the hardest bits about teaching the game to new players for me, but this put it in a very logical way",
+     "likes": 210,
+     "replies": 0,
+     "published": "2023-06-23T18:55:32Z"
+    },
+    {
+     "author": "@Happy_Abe",
+     "text": "Should submit this to SoME if it’s not already. No crazy deep math, but mathematical insights behind such a classic game are deserving of it!",
+     "likes": 164,
+     "replies": 0,
+     "published": "2023-07-09T01:25:54Z"
+    },
+    {
+     "author": "@OmegaFalcon",
+     "text": "Now i know how my friend is so good at connect four. Bro's obviously been taught these secrets",
+     "likes": 120,
+     "replies": 1,
+     "published": "2025-08-23T02:34:29Z"
+    }
+   ],
+   "comments_checked": "2026-10-02"
+  },
+  {
+   "id": "uY5_juNHqyo",
+   "title": "Threat Analysis | Connect 4 Strategy",
+   "published": "2023-08-13T19:39:23Z",
+   "duration": 997,
+   "views": 41970,
+   "likes": 1644,
+   "comments": 85,
+   "thumb": "https://i.ytimg.com/vi/uY5_juNHqyo/mqdefault.jpg",
+   "was_live": false,
+   "top_comments": [
+    {
+     "author": "@sorin_markov",
+     "text": "I liked the example of breaking up and isolating the columns.  Explaning it in a vacuum helped me understand how it works in real situations.  Using a theoretical board started to break my brain",
+     "likes": 112,
+     "replies": 1,
+     "published": "2023-08-13T20:22:33Z"
+    },
+    {
+     "author": "@levigrant4458",
+     "text": "The legend returns",
+     "likes": 111,
+     "replies": 2,
+     "published": "2023-08-13T20:49:20Z"
+    },
+    {
+     "author": "@Radiant3",
+     "text": "A very good explanation of zugzwang control. I really like the generalizations you made regarding zugzwang controlling threats. It's very nice when trying new board types. Great video!",
+     "likes": 46,
+     "replies": 0,
+     "published": "2023-08-13T19:57:42Z"
+    }
+   ],
+   "comments_checked": "2026-10-02"
+  },
+  {
+   "id": "mNj6Z5CbUB0",
+   "title": "Claimeven - Connect 4 Strategy",
+   "published": "2023-10-02T18:30:08Z",
+   "duration": 643,
+   "views": 456348,
+   "likes": 14788,
+   "comments": 304,
+   "thumb": "https://i.ytimg.com/vi/mNj6Z5CbUB0/mqdefault.jpg",
+   "was_live": true,
+   "top_comments": [
+    {
+     "author": "@kellyrants7673",
+     "text": "I have an essay due in an hour.",
+     "likes": 4502,
+     "replies": 42,
+     "published": "2023-10-18T05:04:52Z"
+    },
+    {
+     "author": "@TheAntondi",
+     "text": "The entire video I was waiting for a mathematical generalisation, but it's just a genuine connect 4 strategy",
+     "likes": 3221,
+     "replies": 4,
+     "published": "2023-10-21T12:34:01Z"
+    },
+    {
+     "author": "@thewoodpeckers655",
+     "text": "Today I learned that connect 4 experts exist",
+     "likes": 1843,
+     "replies": 9,
+     "published": "2023-10-10T16:35:59Z"
+    }
+   ],
+   "comments_checked": "2026-10-02"
+  },
+  {
+   "id": "i9pBeuBeupY",
+   "title": "Beating Connect 4 with Brute Force",
+   "published": "2024-07-19T04:05:40Z",
+   "duration": 651,
+   "views": 263821,
+   "likes": 9732,
+   "comments": 267,
+   "thumb": "https://i.ytimg.com/vi/i9pBeuBeupY/mqdefault.jpg",
+   "was_live": false,
+   "top_comments": [
+    {
+     "author": "@gridddo",
+     "text": "guess its time to watch another really well made connect 4 video i dont understand",
+     "likes": 1091,
+     "replies": 9,
+     "published": "2024-07-19T04:13:21Z"
+    },
+    {
+     "author": "@sorin_markov",
+     "text": "In case you missed it, there are two communities you can join linked in the description!  One is for 2swap the man himself and one is a connect four server that I totally have no vested interest in :)",
+     "likes": 515,
+     "replies": 2,
+     "published": "2024-07-19T05:09:18Z"
+    },
+    {
+     "author": "@tsanguine",
+     "text": "\"So far we've been interested in strategies of connect 4,\" instant sub. straight to the point. i love you.",
+     "likes": 418,
+     "replies": 2,
+     "published": "2024-07-24T04:00:12Z"
+    }
+   ],
+   "comments_checked": "2026-10-02"
+  },
+  {
+   "id": "LavXSS5Xtbg",
+   "title": "༄ GRAVITY BASINS ࿐",
+   "published": "2024-08-02T20:00:06Z",
+   "duration": 375,
+   "views": 917393,
+   "likes": 47750,
+   "comments": 1778,
+   "thumb": "https://i.ytimg.com/vi/LavXSS5Xtbg/mqdefault.jpg",
+   "was_live": true,
+   "top_comments": [
+    {
+     "author": "@girllloyd1214",
+     "text": "holy album art generator",
+     "likes": 7460,
+     "replies": 63,
+     "published": "2024-08-02T20:17:30Z"
+    },
+    {
+     "author": "@suop1234",
+     "text": "youtube compression really doing a number on this one",
+     "likes": 5238,
+     "replies": 11,
+     "published": "2024-08-04T11:38:12Z"
+    },
+    {
+     "author": "@6884",
+     "text": "So proud to be part of this :)",
+     "likes": 4559,
+     "replies": 42,
+     "published": "2024-08-03T07:47:24Z"
+    }
+   ],
+   "comments_checked": "2026-10-02"
+  },
+  {
+   "id": "Ed1gsyxxwM0",
+   "title": "Mandelbrot's Evil Twin",
+   "published": "2024-11-28T02:39:32Z",
+   "duration": 467,
+   "views": 2270864,
+   "likes": 100124,
+   "comments": 4486,
+   "thumb": "https://i.ytimg.com/vi/Ed1gsyxxwM0/mqdefault.jpg",
+   "was_live": false,
+   "top_comments": [
+    {
+     "author": "@shrooms_clippy",
+     "text": "STOP MOVING THROUGH THE SIXTH DIMENSION MY BRAIN CAN’T TAKE IT",
+     "likes": 10503,
+     "replies": 70,
+     "published": "2024-12-01T19:44:37Z"
+    },
+    {
+     "author": "@The_Fraktal_Toybox",
+     "text": "The deepest dream to be able to visualize this as a three dimensional object.",
+     "likes": 8623,
+     "replies": 133,
+     "published": "2024-11-28T03:59:09Z"
+    },
+    {
+     "author": "@OnlySoaa",
+     "text": "I just want to bring attention to the fact that the music effects are synchronized with the visuals, and that makes this video so much better than anything else I've seen about fractals.",
+     "likes": 8222,
+     "replies": 38,
+     "published": "2024-11-28T03:09:47Z"
+    }
+   ],
+   "comments_checked": "2026-10-02"
+  },
+  {
+   "id": "RcVA8Nj6HEo",
+   "title": "What is PLUS times PLUS?",
+   "published": "2025-03-23T03:30:06Z",
+   "duration": 1708,
+   "views": 2112904,
+   "likes": 85074,
+   "comments": 5217,
+   "thumb": "https://i.ytimg.com/vi/RcVA8Nj6HEo/mqdefault.jpg",
+   "was_live": true,
+   "top_comments": [
+    {
+     "author": "@carykh",
+     "text": "I felt like we were rediscovering math from square-1 when watching this video",
+     "likes": 13442,
+     "replies": 226,
+     "published": "2025-03-23T09:04:35Z"
+    },
+    {
+     "author": "@nox_bb",
+     "text": "Tromp diagrams are the sort of thing you'd expect aliens to write their ancient inscriptions in.",
+     "likes": 8534,
+     "replies": 44,
+     "published": "2025-03-23T06:30:28Z"
+    },
+    {
+     "author": "@artyomnikulenko7096",
+     "text": "They joke that the more advanced the math gets the less numbers it has...\nIn Lambda-calculus there are actually no numbers, just abstract representations of numbers.\n\nThis topic is both really interesting and good to fall asleep to thanks to the soothing ethereal music. Thanks",
+     "likes": 4910,
+     "replies": 28,
+     "published": "2025-03-28T18:50:23Z"
+    }
+   ],
+   "comments_checked": "2026-10-02"
+  },
+  {
+   "id": "dtjb2OhEQcU",
+   "title": "Double Pendulums are Chaoticn't",
+   "published": "2025-07-11T17:44:21Z",
+   "duration": 538,
+   "views": 4072919,
+   "likes": 193147,
+   "comments": 7656,
+   "thumb": "https://i.ytimg.com/vi/dtjb2OhEQcU/mqdefault.jpg",
+   "was_live": false,
+   "top_comments": [
+    {
+     "author": "@3blue1brown",
+     "text": "Really beautifully done!",
+     "likes": 34325,
+     "replies": 178,
+     "published": "2025-07-12T15:22:01Z"
+    },
+    {
+     "author": "@godfilms",
+     "text": "shit went from a double pendulum to a salvia trip real quick",
+     "likes": 21897,
+     "replies": 52,
+     "published": "2025-07-12T20:15:05Z"
+    },
+    {
+     "author": "@scrindonguloder",
+     "text": "who needs LSD when you have advanced fractal geometry",
+     "likes": 16559,
+     "replies": 70,
+     "published": "2025-07-12T03:05:43Z"
+    }
+   ],
+   "comments_checked": "2026-10-02"
+  },
+  {
+   "id": "YGLNyHd2w10",
+   "title": "I Solved Klotski",
+   "published": "2025-08-22T15:45:25Z",
+   "duration": 740,
+   "views": 2015086,
+   "likes": 123063,
+   "comments": 5734,
+   "thumb": "https://i.ytimg.com/vi/YGLNyHd2w10/mqdefault.jpg",
+   "was_live": false,
+   "top_comments": [
+    {
+     "author": "@Thinking-about-anything",
+     "text": "WHY IS THE QUALITY SO DAMN HIGH. MY INFERIOR EYES WERE NOT MEANT FOR THIS",
+     "likes": 20470,
+     "replies": 80,
+     "published": "2025-08-22T15:51:38Z"
+    },
+    {
+     "author": "@VirtualRiot",
+     "text": "Jesus Christ the sound design underneath the animations is soooo well done, love the use of some classic fm and the plucky pitch attacks for asmr clicks",
+     "likes": 13567,
+     "replies": 58,
+     "published": "2025-08-23T01:22:21Z"
+    },
+    {
+     "author": "@scrindonguloder",
+     "text": "hyper advanced math with ungodly editing gotta be my favourite movie genre",
+     "likes": 10835,
+     "replies": 41,
+     "published": "2025-08-22T17:06:08Z"
+    }
+   ],
+   "comments_checked": "2026-10-02"
+  },
+  {
+   "id": "9HIy5dJE-zQ",
+   "title": "Mystery of the Quintic",
+   "published": "2025-11-25T23:32:22Z",
+   "duration": 1621,
+   "views": 769177,
+   "likes": 40242,
+   "comments": 3783,
+   "thumb": "https://i.ytimg.com/vi/9HIy5dJE-zQ/mqdefault.jpg",
+   "was_live": false,
+   "top_comments": [
+    {
+     "author": "@árminbartholomewsonIII",
+     "text": "im literally in 8th grade i have no idea what this means but im being compelled to watch\nedit: i found this video again so i just wanted to share with you that i got accepted to my dream school! i scored 29th in the country and they accept 30 people what are the odds",
+     "likes": 6854,
+     "replies": 224,
+     "published": "2025-11-25T23:35:21Z"
+    },
+    {
+     "author": "@OtterSou",
+     "text": "14:08 \"Now that our surface has no sharp edges\"\n*turning a sphere inside out flashbacks*",
+     "likes": 6813,
+     "replies": 42,
+     "published": "2025-11-25T23:52:30Z"
+    },
+    {
+     "author": "@mrnerdy3501",
+     "text": "We should give credit to 3B1B for starting this type of video, but this video has elevated the genre and is in a complete league of its own.",
+     "likes": 3833,
+     "replies": 24,
+     "published": "2025-11-26T21:53:39Z"
+    }
+   ],
+   "comments_checked": "2026-10-02"
+  },
+  {
+   "id": "KaljD3Q3ct0",
+   "title": "I Solved Connect 4",
+   "published": "2026-04-08T14:19:36Z",
+   "duration": 1136,
+   "views": 1644549,
+   "likes": 73856,
+   "comments": 3072,
+   "thumb": "https://i.ytimg.com/vi/KaljD3Q3ct0/mqdefault.jpg",
+   "was_live": false,
+   "top_comments": [
+    {
+     "author": "@Sloimay",
+     "text": "I am about to be so fun at parties",
+     "likes": 18334,
+     "replies": 34,
+     "published": "2026-04-08T15:17:19Z"
+    },
+    {
+     "author": "@suxiong-logic",
+     "text": "Crazy amount of aura resigning after the first move.",
+     "likes": 12708,
+     "replies": 43,
+     "published": "2026-04-08T16:56:15Z"
+    },
+    {
+     "author": "@themostoriginalyoutuber",
+     "text": "Let's play a game of connect four, don't worry about my 500 page book here with every opening and endgame in it",
+     "likes": 8038,
+     "replies": 19,
+     "published": "2026-04-08T15:42:10Z"
+    }
+   ],
+   "comments_checked": "2026-10-02"
+  },
+  {
+   "id": "kL9BTbIGxLg",
+   "title": "i’m so bad at billiards that i ended up in the hyperbolic plane",
+   "published": "2026-09-20T07:55:46Z",
+   "duration": 683,
+   "views": 2851265,
+   "likes": 81198,
+   "comments": 5067,
+   "thumb": "https://i.ytimg.com/vi/kL9BTbIGxLg/mqdefault.jpg",
+   "was_live": false,
+   "top_comments": [
+    {
+     "author": "@lightblueexists",
+     "text": "I don't think billards causes you to hallucinate this badly man",
+     "likes": 13845,
+     "replies": 53,
+     "published": "2026-09-20T07:58:53Z"
+    },
+    {
+     "author": "@ram_apologist",
+     "text": "mom he put me in the kaleidoscope again",
+     "likes": 13269,
+     "replies": 19,
+     "published": "2026-09-20T11:14:32Z"
+    },
+    {
+     "author": "@JakkAuburn",
+     "text": "Ah well, that's your problem right there: Your first move was to take the ball off the table, which under most rules counts as a severe foul.",
+     "likes": 10158,
+     "replies": 20,
+     "published": "2026-09-20T15:47:19Z"
+    }
+   ],
+   "comments_checked": "2026-10-02"
+  }
+ ]
+}
