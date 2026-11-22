@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-21T12:40:54+00:00",
+ "generated_at": "2026-11-22T12:36:49+00:00",
  "channel": {
   "id": "UCiNLr9wX35KksK77mrQgxiw",
   "handle": "@twoswap",
@@ -8,7 +8,7 @@
   "created": "2017-01-25T01:56:04Z",
   "subscribers": 377000,
   "subscribers_hidden": false,
-  "views": 20513552,
+  "views": 20577890,
   "video_count": 11
  },
  "videos": [
@@ -17,209 +17,143 @@
    "title": "Claimeven - Connect 4 Strategy",
    "published": "2023-10-02T18:30:08Z",
    "duration": 643,
-   "views": 461410,
-   "likes": 14840,
-   "comments": 304,
+   "views": 461546,
+   "likes": 14841,
+   "comments": 305,
    "thumb": "https://i.ytimg.com/vi/mNj6Z5CbUB0/mqdefault.jpg",
    "was_live": true,
    "top_comments": [],
-   "comments_checked": "2026-10-04"
+   "comments_checked": "2026-11-22"
   },
   {
    "id": "i9pBeuBeupY",
    "title": "Beating Connect 4 with Brute Force",
    "published": "2024-07-19T04:05:40Z",
    "duration": 651,
-   "views": 266516,
+   "views": 266577,
    "likes": 9759,
    "comments": 267,
    "thumb": "https://i.ytimg.com/vi/i9pBeuBeupY/mqdefault.jpg",
    "was_live": false,
    "top_comments": [],
-   "comments_checked": "2026-10-04"
+   "comments_checked": "2026-11-22"
   },
   {
    "id": "LavXSS5Xtbg",
    "title": "༄ GRAVITY BASINS ࿐",
    "published": "2024-08-02T20:00:06Z",
    "duration": 375,
-   "views": 975522,
-   "likes": 48520,
-   "comments": 1787,
+   "views": 976119,
+   "likes": 48521,
+   "comments": 1785,
    "thumb": "https://i.ytimg.com/vi/LavXSS5Xtbg/mqdefault.jpg",
    "was_live": true,
-   "top_comments": [
-    {
-     "author": "@girllloyd1214",
-     "text": "holy album art generator",
-     "likes": 7472,
-     "replies": 63,
-     "published": "2024-08-02T20:17:30Z"
-    },
-    {
-     "author": "@suop1234",
-     "text": "youtube compression really doing a number on this one",
-     "likes": 5244,
-     "replies": 11,
-     "published": "2024-08-04T11:38:12Z"
-    },
-    {
-     "author": "@6884",
-     "text": "So proud to be part of this :)",
-     "likes": 4564,
-     "replies": 42,
-     "published": "2024-08-03T07:47:24Z"
-    }
-   ],
-   "comments_checked": "2026-10-04"
+   "top_comments": [],
+   "comments_checked": "2026-11-22"
   },
   {
    "id": "Ed1gsyxxwM0",
    "title": "Mandelbrot's Evil Twin",
    "published": "2024-11-28T02:39:32Z",
    "duration": 467,
-   "views": 2395793,
-   "likes": 101547,
+   "views": 2398510,
+   "likes": 101571,
    "comments": 4548,
    "thumb": "https://i.ytimg.com/vi/Ed1gsyxxwM0/mqdefault.jpg",
    "was_live": false,
    "top_comments": [],
-   "comments_checked": "2026-10-04"
+   "comments_checked": "2026-11-22"
   },
   {
    "id": "RcVA8Nj6HEo",
    "title": "What is PLUS times PLUS?",
    "published": "2025-03-23T03:30:06Z",
    "duration": 1708,
-   "views": 2245248,
-   "likes": 86363,
-   "comments": 5276,
+   "views": 2248027,
+   "likes": 86379,
+   "comments": 5278,
    "thumb": "https://i.ytimg.com/vi/RcVA8Nj6HEo/mqdefault.jpg",
    "was_live": true,
    "top_comments": [],
-   "comments_checked": "2026-10-04"
+   "comments_checked": "2026-11-22"
   },
   {
    "id": "dtjb2OhEQcU",
    "title": "Double Pendulums are Chaoticn't",
    "published": "2025-07-11T17:44:21Z",
    "duration": 538,
-   "views": 4632436,
-   "likes": 197399,
-   "comments": 7729,
+   "views": 4649956,
+   "likes": 197474,
+   "comments": 7730,
    "thumb": "https://i.ytimg.com/vi/dtjb2OhEQcU/mqdefault.jpg",
    "was_live": false,
    "top_comments": [],
-   "comments_checked": "2026-10-04"
+   "comments_checked": "2026-11-22"
   },
   {
    "id": "YGLNyHd2w10",
    "title": "I Solved Klotski",
    "published": "2025-08-22T15:45:25Z",
    "duration": 740,
-   "views": 2082264,
-   "likes": 123871,
+   "views": 2083572,
+   "likes": 123891,
    "comments": 5741,
    "thumb": "https://i.ytimg.com/vi/YGLNyHd2w10/mqdefault.jpg",
    "was_live": false,
    "top_comments": [],
-   "comments_checked": "2026-10-04"
+   "comments_checked": "2026-11-22"
   },
   {
    "id": "9HIy5dJE-zQ",
    "title": "Mystery of the Quintic",
    "published": "2025-11-25T23:32:22Z",
    "duration": 1621,
-   "views": 845722,
-   "likes": 41447,
-   "comments": 3834,
+   "views": 846781,
+   "likes": 41460,
+   "comments": 3836,
    "thumb": "https://i.ytimg.com/vi/9HIy5dJE-zQ/mqdefault.jpg",
    "was_live": false,
    "top_comments": [],
-   "comments_checked": "2026-10-04"
+   "comments_checked": "2026-11-22"
   },
   {
    "id": "KaljD3Q3ct0",
    "title": "I Solved Connect 4",
    "published": "2026-04-08T14:19:36Z",
    "duration": 1136,
-   "views": 1746709,
-   "likes": 75409,
-   "comments": 3106,
+   "views": 1747603,
+   "likes": 75416,
+   "comments": 3107,
    "thumb": "https://i.ytimg.com/vi/KaljD3Q3ct0/mqdefault.jpg",
    "was_live": false,
    "top_comments": [],
-   "comments_checked": "2026-10-04"
+   "comments_checked": "2026-11-22"
   },
   {
    "id": "kL9BTbIGxLg",
    "title": "i’m so bad at billiards that i ended up in the hyperbolic plane",
    "published": "2026-09-20T07:55:46Z",
    "duration": 683,
-   "views": 4546816,
-   "likes": 112244,
-   "comments": 6198,
+   "views": 4577784,
+   "likes": 112675,
+   "comments": 6221,
    "thumb": "https://i.ytimg.com/vi/kL9BTbIGxLg/mqdefault.jpg",
    "was_live": false,
-   "top_comments": [
-    {
-     "author": "@lightblueexists",
-     "text": "I don't think billards causes you to hallucinate this badly man",
-     "likes": 16093,
-     "replies": 57,
-     "published": "2026-09-20T07:58:53Z"
-    },
-    {
-     "author": "@ram_apologist",
-     "text": "mom he put me in the kaleidoscope again",
-     "likes": 16083,
-     "replies": 21,
-     "published": "2026-09-20T11:14:32Z"
-    },
-    {
-     "author": "@JakkAuburn",
-     "text": "Ah well, that's your problem right there: Your first move was to take the ball off the table, which under most rules counts as a severe foul.",
-     "likes": 15296,
-     "replies": 28,
-     "published": "2026-09-20T15:47:19Z"
-    }
-   ],
-   "comments_checked": "2026-11-04"
+   "top_comments": [],
+   "comments_checked": "2026-11-22"
   },
   {
    "id": "-k-Dnw0F3kc",
    "title": "don't flip, algebra inside",
    "published": "2026-11-10T23:46:06Z",
    "duration": 754,
-   "views": 350916,
-   "likes": 13209,
-   "comments": 1409,
+   "views": 357414,
+   "likes": 13365,
+   "comments": 1422,
    "thumb": "https://i.ytimg.com/vi/-k-Dnw0F3kc/mqdefault.jpg",
    "was_live": false,
-   "top_comments": [
-    {
-     "author": "@RybbSyfxuh",
-     "text": "I feel like TheGrayCuber was put in charge of naming.",
-     "likes": 2385,
-     "replies": 14,
-     "published": "2026-11-11T00:05:00Z"
-    },
-    {
-     "author": "@nerdboy628",
-     "text": "The sound design on this is INSANE",
-     "likes": 1633,
-     "replies": 41,
-     "published": "2026-11-10T23:56:50Z"
-    },
-    {
-     "author": "@SanityInAnAmazonBox",
-     "text": "AND THE GRAY CUBER?? HOLAY COLLAABBBBBBBB BBB",
-     "likes": 1361,
-     "replies": 2,
-     "published": "2026-11-10T23:47:05Z"
-    }
-   ],
-   "comments_checked": "2026-11-21"
+   "top_comments": [],
+   "comments_checked": "2026-11-22"
   }
  ]
 }
